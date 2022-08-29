@@ -1,5 +1,6 @@
+import axios from 'axios';
 import qs from 'qs';
-const CLIENT_ID = 'b83622355cb69c2';
+const CLIENT_ID = 'c03f213cc4e36ce';
 const ROOT_URL = 'https://api.imgur.com';
 
 export default {
@@ -11,6 +12,13 @@ export default {
     window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(
       querystring
     )}`;
+  },
+  fetchImages(token) {
+    return axios.get(`${ROOT_URL}/3/account/me/images`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
 };
 
